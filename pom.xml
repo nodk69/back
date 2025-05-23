@@ -17,7 +17,9 @@
 
 	<properties>
 		<java.version>22</java.version>
+		<maven.compiler.release>22</maven.compiler.release>
 		<lombok.version>1.18.32</lombok.version>
+		<spring-boot.version>3.2.0</spring-boot.version>
 	</properties>
 
 	<dependencies>
@@ -50,19 +52,27 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.13.0</version>
 				<configuration>
-					<release>${java.version}</release>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-							<version>${lombok.version}</version>
-						</path>
-					</annotationProcessorPaths>
+					<release>${maven.compiler.release}</release>
+					<verbose>true</verbose>
+					<fork>true</fork>
+					<executable>${java.home}/bin/javac</executable>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+				<configuration>
+					<jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
+					<executable>true</executable>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
