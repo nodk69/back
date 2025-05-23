@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.0</version> <!-- Minimum version for Java 22 support -->
+		<version>3.2.0</version>
 		<relativePath/>
 	</parent>
 
@@ -16,14 +16,12 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>22</java.version>
-		<maven.compiler.release>22</maven.compiler.release>
+		<java.version>21</java.version> <!-- Changed to 21 -->
+		<maven.compiler.release>21</maven.compiler.release> <!-- Changed to 21 -->
 		<lombok.version>1.18.32</lombok.version>
-		<spring-boot.version>3.2.0</spring-boot.version>
 	</properties>
 
 	<dependencies>
-		<!-- Your existing dependencies remain the same -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -54,25 +52,19 @@
 				<configuration>
 					<release>${maven.compiler.release}</release>
 					<verbose>true</verbose>
-					<fork>true</fork>
-					<executable>${java.home}/bin/javac</executable>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot.version}</version>
 				<configuration>
-					<jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
-					<executable>true</executable>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
 				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
