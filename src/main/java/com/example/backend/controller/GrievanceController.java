@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = {
+        "https://front-git-main-nadeems-projects-8aac0ba4.vercel.app",
+        "https://front-nadeems-projects-8aac0ba4.vercel.app"
+})
 @RestController
 @RequestMapping("/grievances")
 public class GrievanceController {
